@@ -30,7 +30,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Padrões alterados pelo Developer
+        Route::pattern('id', '[0-9]+');
 
         parent::boot();
     }

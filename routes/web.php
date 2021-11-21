@@ -11,6 +11,63 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController');
+//Route::redirect('/', '/teste');
+Route::view('/teste', 'teste');
+
+
+Route::prefix('/config')->group(function(){
+
+  Route::get('/', 'ConfigController@index');
+
+  Route::get('info', 'ConfigController@info');
+  
+  Route::get('permissoes', 'ConfigController@permissoes');
+});
+/*
+Route::prefix('/config')->group(function(){
+  Route::get('/', function(){
+      return view('config');
+  });
+  Route::get('info', function(){
+    echo "Configurações INFO 2";
+  });
+  Route::get('permissoes', function(){
+    echo "Configurações PERMISSOES 2";
+  });
+});
+*/
+/*
+Route::get('/config', function () {
+  return view('config');
+});
+Route::get('/config/info', function () {
+  echo "Configurações INFO";
+})->name('info');
+Route::get('/config/permissoes', function () {
+  echo "Configurações PERMISSÕES";
+})->name('permissoes');
+*/
+
+
+
+Route::get('/noticia/{slug}', function ($slug) {
+    echo "SLUG: ".$slug;
+});
+
+Route::get('/noticia/{slug}/comentario/{id}', function ($slug, $id) {
+    echo "Mostrando o comentario ".$id." da noticia ".$slug;
+});
+
+// Pega só letras - REGEX
+Route::get('/user/{name}', function ($name) {
+    echo "Mostrando usuário de NOME: ".$name;
+})->where('name', '[a-z]+');
+// Pega só números
+Route::get('/user/{id}', function ($id) {
+    echo "Mostrando usuário ID: ".$id;
+});
+
+Route::fallback(function(){
+  return view('404');
 });
