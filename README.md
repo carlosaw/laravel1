@@ -13,7 +13,3 @@
 
 # Rodar projeto
 ## php artisan serve
-
-# Rodar projeto
-## php artisan serve
-
