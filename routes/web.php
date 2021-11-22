@@ -18,11 +18,11 @@ Route::view('/teste', 'teste');
 
 Route::prefix('/config')->group(function(){
 
-  Route::get('/', 'ConfigController@index');
+  Route::get('/', 'Admin\ConfigController@index');
+  Route::post('/', 'Admin\ConfigController@index');
+  Route::get('info', 'Admin\ConfigController@info');  
+  Route::get('permissoes', 'Admin\ConfigController@permissoes');
 
-  Route::get('info', 'ConfigController@info');
-  
-  Route::get('permissoes', 'ConfigController@permissoes');
 });
 /*
 Route::prefix('/config')->group(function(){
