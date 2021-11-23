@@ -14,34 +14,48 @@
 Route::get('/', 'HomeController');
 //Route::redirect('/', '/teste');
 Route::view('/teste', 'teste');
+Route::get('/login', function(){
+  echo "PÁGINA DE LOGIN";
+})->name('login');
+
+Route::resource('todo', 'TodoController');
+/*
+GET - /todo - index - todo.index - LISTA OS ITENS
+GET - /todo/create - create - todo.create - FORM DE CRIAÇÃO
+POST - /todo - store - todo.store - RECEBER OS DADOS E ADD ITEM
+GET - /todo/{id} - show - todo.show - ITEM INDIVIDUAL
+GET - /todo/{id}/edit - edit - todo.edit - FORM DE EDIÇÃO
+PUT - /todo/{id} - update - todo.update - RECEBER OS DADOS E UPDATE ITEM
+DELETE - /todo/{id} - destroy - todo.destroy - DELETAR O ITEM
+*/
 
 Route::prefix('/tarefas')->group(function(){
 
   // Listagem de tarefas
-  Route::get('/', 'TarefasController@list');
+  Route::get('/', 'TarefasController@list')->name('tarefas.list');
 
   // Tela de ADIÇÃO de nova tarefa.
-  Route::get('add', 'TarefasController@add');
+  Route::get('add', 'TarefasController@add')->name('tarefas.add');
   // AÇÃO de ADIÇÃO nova tarefa. 
   Route::post('add', 'TarefasController@addAction');
 
   // Tela de EDIÇÃO de uma tarefa.
-  Route::get('edit/{id}', 'TarefasController@edit');
+  Route::get('edit/{id}', 'TarefasController@edit')->name('tarefas.edit');
   // AÇÃO de EDIÇÃO de uma tarefa.
   Route::post('edit/{id}', 'TarefasController@editAction');
 
   // AÇÃO de DELETAR uma tarefa.
-  Route::get('delete/{id}', 'TarefasController@del');
+  Route::get('delete/{id}', 'TarefasController@del')->name('tarefas.del');
   
   // MARCAR resolvido || não.
-  Route::get('marcar/{id}', 'TarefasController@done');
+  Route::get('marcar/{id}', 'TarefasController@done')->name('tarefas.done');
 
 });
 
 
 Route::prefix('/config')->group(function(){
 
-  Route::get('/', 'Admin\ConfigController@index');
+  Route::get('/', 'Admin\ConfigController@index')->middleware('auth');
   Route::post('/', 'Admin\ConfigController@index');
   Route::get('info', 'Admin\ConfigController@info');  
   Route::get('permissoes', 'Admin\ConfigController@permissoes');
