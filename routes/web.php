@@ -15,6 +15,29 @@ Route::get('/', 'HomeController');
 //Route::redirect('/', '/teste');
 Route::view('/teste', 'teste');
 
+Route::prefix('/tarefas')->group(function(){
+
+  // Listagem de tarefas
+  Route::get('/', 'TarefasController@list');
+
+  // Tela de ADIÇÃO de nova tarefa.
+  Route::get('add', 'TarefasController@add');
+  // AÇÃO de ADIÇÃO nova tarefa. 
+  Route::post('add', 'TarefasController@addAction');
+
+  // Tela de EDIÇÃO de uma tarefa.
+  Route::get('edit/{id}', 'TarefasController@edit');
+  // AÇÃO de EDIÇÃO de uma tarefa.
+  Route::post('edit/{id}', 'TarefasController@editAction');
+
+  // AÇÃO de DELETAR uma tarefa.
+  Route::get('delete/{id}', 'TarefasController@del');
+  
+  // MARCAR resolvido || não.
+  Route::get('marcar/{id}', 'TarefasController@done');
+
+});
+
 
 Route::prefix('/config')->group(function(){
 

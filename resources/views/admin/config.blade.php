@@ -4,25 +4,33 @@
 
 @section('content')
   <h1>Configurações</h1>
+
+  <!--@component('components.alert')
+    Alguma frase qualquer 2...
+  @endcomponent-->
   
-    <!--<ul> NÃO FUNCIONA
+  @alert ATALHO
+    Alguma frase qualquer...
+  @endalert
+
+    <ul> 
       @forelse($lista as $item)
-        <li>{{ $item['nome'] }}</li>
+        <li>{{ $item['qt'] }} - {{ $item['nome'] }}</li>
       @empty
         <li>Não há ingredientes</li>
       @endforelse
-    </ul>-->
+    </ul>
  
-  @if(count($lista) > 0)
+  <!--@if(count($lista) > 0)
   Lista de Bolo:
   <ul>
     @foreach($lista as $item)
-      <li>{{ $item['nome'] }} - {{ $item['qt'] }}</li>
+      <li>{{ $item['qt'] }} - {{ $item['nome'] }}</li>
     @endforeach
   </ul>
   @else
     Não há ingredientes.
-  @endif
+  @endif-->
   
   <form method="POST">
     @csrf
