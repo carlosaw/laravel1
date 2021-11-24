@@ -14,9 +14,12 @@
 Route::get('/', 'HomeController');
 //Route::redirect('/', '/teste');
 Route::view('/teste', 'teste');
-Route::get('/login', function(){
-  echo "PÁGINA DE LOGIN";
-})->name('login');
+
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::post('/login', 'Auth\LoginController@authenticate');
+
+Route::get('/register', 'Auth\RegisterController@index')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
 
 Route::resource('todo', 'TodoController');
 /*
@@ -55,8 +58,9 @@ Route::prefix('/tarefas')->group(function(){
 
 Route::prefix('/config')->group(function(){
 
-  Route::get('/', 'Admin\ConfigController@index')->middleware('auth');
+  Route::get('/', 'Admin\ConfigController@index')->name('config.index')->middleware('auth');
   Route::post('/', 'Admin\ConfigController@index');
+
   Route::get('info', 'Admin\ConfigController@info');  
   Route::get('permissoes', 'Admin\ConfigController@permissoes');
 

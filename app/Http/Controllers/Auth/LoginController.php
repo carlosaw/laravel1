@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;// Pega o Request
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;// Processo de Login
 
 class LoginController extends Controller
 {
@@ -36,5 +38,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function index() {
+        return view('login');
+    }
+
+    public function authenticate(Request $request) {
+        $creds = $request->only(['email', 'password']);
+
+        if(Auth::attempt($creds)) {
+            return redirect()->route('config.index');
+        } else {
+            return redirect()->route('login')
+                ->with('warning', 'E-mail e/ou senha inválidos!');            
+        }
     }
 }
