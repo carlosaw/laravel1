@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/config';
 
     /**
      * Create a new controller instance.
@@ -53,5 +53,10 @@ class LoginController extends Controller
             return redirect()->route('login')
                 ->with('warning', 'E-mail e/ou senha inválidos!');            
         }
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

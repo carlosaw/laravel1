@@ -5,6 +5,10 @@
 @section('content')
   <h1>Configurações</h1>
 
+  Olá, {{$nome}}
+
+  <a href="/logout">Sair</a><br/><br/>
+
   <!--@component('components.alert')
     Alguma frase qualquer 2...
   @endcomponent-->
@@ -32,16 +36,18 @@
     Não há ingredientes.
   @endif-->
   
-  <form method="POST">
-    @csrf
-    Nome:<br/>
-    <input type="text" name="nome" /><br/>
-    Idade:<br/>
-    <input type="number" name="idade" /><br/>
-    Cidade:<br/>
-    <input type="text" name="cidade" /><br/>
+  @if($showform)
+    <form method="POST">
+      @csrf
+      Nome:<br/>
+      <input type="text" name="nome" /><br/><br/>
+      Idade:<br/>
+      <input type="number" name="idade" /><br/><br/>
+      Cidade:<br/>
+      <input type="text" name="cidade" /><br/><br/>
 
-    <input type="submit" value="Enviar" />
-  </form>
+      <input type="submit" value="Enviar" />
+    </form>
+  @endif
   <a href="/config/info">Informações</a>
 @endsection

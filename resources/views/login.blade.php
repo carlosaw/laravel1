@@ -9,7 +9,9 @@
       {{session('warning')}}
     @endalert
   @endif
+  
   <br/>
+
   <form method="POST">
     @csrf
     

@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;// Puxa o Auth
 
 class RegisterController extends Controller
 {
@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/config';
 
     /**
      * Create a new controller instance.
@@ -53,13 +53,13 @@ class RegisterController extends Controller
 
         if($validator->fails()) {
             return redirect()->route('register')
-                ->withErrors($validator)
-                ->withInput();// Retorna o campo preenchido
+            ->withErrors($validator)// Mostra os erros
+            ->withInput();// Retorna o campo preenchido
         }
 
-        /*$user = $this->create($data);// Cria o usuario abaixo no create
+        $user = $this->create($data);// Cria o usuario abaixo no create
         Auth::login($user);
-        return redirect()->route('config');*/
+        return redirect()->route('config.index');
     }
 
     /**

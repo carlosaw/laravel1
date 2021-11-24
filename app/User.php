@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     
-    public $timestamps = false;
+    public $timestamps = false;// sem created_at e updated_at
 
     /**
      * The attributes that are mass assignable.
