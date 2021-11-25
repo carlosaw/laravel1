@@ -26,7 +26,8 @@ class ConfigController extends Controller
       ['nome'=>'farinha', 'qt'=>'200 gr'],
       ['nome'=>'ovo', 'qt'=>'4 uni'],
       ['nome'=>'leite', 'qt'=>'150 ml'],
-      ['nome'=>'fermento', 'qt'=>'10 gr']
+      ['nome'=>'fermento', 'qt'=>'10 gr'],
+      ['nome'=>'banana', 'qt'=>'2 uni']
     ];
 
     $data = [
