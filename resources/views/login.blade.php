@@ -9,6 +9,8 @@
       {{session('warning')}}
     @endalert
   @endif
+
+  @lang('messages.test')
   
   <br/>
 
@@ -18,8 +20,16 @@
     <input type="email" name="email" placeholder="Digite um e-mail" /><br/><br/>
     
     <input type="password" name="password" placeholder="Digite uma senha" /><br/><br/>
- 
-    <input type="submit" value="Entrar" />
+
+    <!--Bloqueio de LOGIN (Botão de Entrar)-->
+    @if($tries >= 10)
+      @lang('messages.tryerror', ['count'=>3])
+    @else
+      <input type="submit" value="Entrar" />
+    @endif
+    
   </form>
+
+  Tentativas de Login: {{ $tries }}
 
 @endsection
