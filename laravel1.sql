@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Nov-2021 às 02:46
--- Versão do servidor: 10.4.17-MariaDB
--- versão do PHP: 7.4.13
+-- Tempo de geração: 25-Nov-2021 às 15:15
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,18 +49,20 @@ INSERT INTO `tarefas` (`id`, `titulo`, `resolvido`) VALUES
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) DEFAULT '0',
-  `email` varchar(200) NOT NULL DEFAULT '0',
-  `password` varchar(100) NOT NULL DEFAULT '0',
-  `remember_token` varchar(100) DEFAULT '0'
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`) VALUES
-(1, 'Carlos Alberto', 'carlos@gmail.com', '$2y$10$k8WMuj2l5qLr3V3apqLRQO3A03KKSKqme0Q2gRShCmNiG2ZKw6/t2', '0');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `admin`) VALUES
+(2, 'Carlos Moraes', 'carlos@gmail.com', '$2y$10$M57k9SiJADgwNWtwWLHoguhYAQ/thV0AAh/KQvew0ImvYbX6M0umm', NULL, 1),
+(3, 'Teste', 'teste@gmail.com', '$2y$10$3Xvr6u/fl8ZASsEt0aYgQ.F7Xkl8KC4aisw0uuqctXYjLYZpZSmUy', NULL, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -92,7 +94,7 @@ ALTER TABLE `tarefas`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
